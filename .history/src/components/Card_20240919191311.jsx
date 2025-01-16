@@ -1,0 +1,19 @@
+import React from 'react'
+
+function Card() {
+  return (
+   <div className='relative h-[40vw]'>
+        <div className='flex gap-4 justify-center'>
+          <img className='h-16 w-24 rounded' src="" alt="" />
+          <img className='h-16 w-24 rounded' src="" alt="" />
+          <img className='h-16 w-24 rounded' src="" alt="" />
+          <img className='h-16 w-24 rounded' src="" alt="" />
+          <img className='h-16 w-24 rounded' src="" alt="" />
+          <img className='h-16 w-24 rounded' src="" alt="" />
+          <img className='h-16 w-24 rounded' src="" alt="" />
+        </div>
+   </div>
+  )
+}
+
+export default Card

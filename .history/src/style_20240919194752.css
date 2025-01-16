@@ -1,0 +1,14 @@
+.image {
+    height: 4rem; /* Adjust the height as needed */
+    width: 6rem; /* Adjust the width as needed */
+    border-radius: 0.375rem; /* Matches the 'rounded' class */
+    filter: grayscale(100%); /* Black and white effect */
+    transition: all 0.3s ease; /* Smooth transition for effects */
+    cursor: pointer; /* Cursor pointer for interactivity */
+  }
+  
+  .image:hover {
+    filter: grayscale(0%); /* Remove black and white effect on hover */
+    transform: scale(1.2); /* Scale up the image on hover */
+  }
+  

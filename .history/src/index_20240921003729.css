@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+img {
+    user-select: none;       /* Disables text/image selection */
+    -webkit-user-drag: none; /* Disables dragging in webkit browsers like Chrome and Safari */
+    -webkit-touch-callout: none; /* Disables iOS context menu */
+  }
+  
