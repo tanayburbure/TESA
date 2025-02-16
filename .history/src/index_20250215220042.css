@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'font1';
+  src: url('/Fonts/Agussans.otf') format('opentype');
+}
+@font-face {
+  font-family: 'font4';
+  src: url('/Fonts/Helvetica.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'font6';
+  src: url('/Fonts/Raleway.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'font7';
+  src: url('/Fonts/Naville-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'font15';
+  src: url('/Fonts/Legand.otf') format('opentype');
+}
