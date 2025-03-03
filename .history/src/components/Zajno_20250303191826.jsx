@@ -1,0 +1,14 @@
+import React from "react";
+import ThreeCanvas from "./components/ThreeCanvas.jsx";
+const Zajno = () => {
+  return (
+    <div className="overflow-x-hidden">
+        <ThreeCanvas />
+          <div className="landing relative ">
+            <img src="./images\logo.png" alt="Logo" />
+          </div>
+    </div>
+  );
+};
+
+export default Zajno;
