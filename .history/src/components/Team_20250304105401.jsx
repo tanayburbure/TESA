@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,20 +15,15 @@ const teamImages = [
   { src: "./images/Madhavi Shinde_.jpg", category: "Administrator", position: "top-[1.2vh] left-[230.7vw]" },
   { src: "./images/Madhavi Shinde_.jpg", category: "Treasurer", position: "top-[28.7vh] left-[247.8vw]" },
 ];
+
 const Team = () => {
   const imageContainerRef = useRef(null);
   const sectionRef = useRef(null);
-  const { scrollYProgress } = useViewportScroll();
-
-  // Clamp grayscale values between 0% and 100%
-  const grayscale = useTransform(scrollYProgress, [0, 1], [100, 0], {
-    clamp: true, // Ensures values stay within the specified range
-  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (sectionRef.current && imageContainerRef.current) {
-        // Horizontal scrolling animation
+        // Pinning and moving images horizontally
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -46,6 +40,24 @@ const Team = () => {
           duration: 2,
           ease: "linear",
         });
+
+        // Stagger image animations (scale-in effect)
+        gsap.fromTo(
+          ".team-image",
+          { opacity: 0, scale: 0.8 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            stagger: 0.3,
+            scrollTrigger: {
+              trigger: imageContainerRef.current,
+              start: "top 80%",
+              end: "top 10%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
       }
     });
 
@@ -58,50 +70,26 @@ const Team = () => {
         <h1 className="text-[#103289] text-[11vw] font-medium tracking-[-1vh] absolute top-[31.50%] font-[font1] pl-[14vw]">
           OUR CORE TEAM
         </h1>
-
+        
         <div
           ref={imageContainerRef}
           className="w-[300%] h-[60%] pl-[90vw] relative flex justify-center items-center"
         >
           <div className="border-t border-[#313131] h-[0.5px] w-full absolute left-[8vw] top-[41vh]"></div>
           <div className="border-t border-[#313131] h-[0.5px] w-full absolute left-[8vw] top-[58.5vh]"></div>
-          <img
-            className="h-[100vh] w-[159.5vw] z-[999999] absolute left-0 top-0"
-            src="./team.png"
-            alt="Team Background"
-            loading="lazy"
-          />
-
-          <motion.div
-            className="w-full h-full relative"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.3 } },
-            }}
-          >
-            {teamImages.map((image, index) => (
-              <motion.div
-                key={index}
-                className={`team-image absolute border-[4px] mt-24 h-[45vh] z-[9999999] overflow-hidden ${image.position}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                style={{ filter: grayscale }} // Apply clamped grayscale
-              >
-                <h3 className="absolute bottom-[2%] left-[3%] text-[2vw] text-white font-bold text-[font2]">
-                  {image.category}
-                </h3>
-                <img
-                  src={image.src}
-                  alt={image.category}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+          <img className="h-[100vh] w-[159.5vw] z-[999999] absolute left-0 top-0" src="./team.png" alt="Team Background" />
+          
+          {teamImages.map((image, index) => (
+            <div
+              key={index}
+              className={`team-image absolute border-[4px] mt-24 h-[45vh] z-[9999999] overflow-hidden ${image.position}`}
+            >
+              <h3 className="absolute bottom-[2%] left-[3%] text-[2vw] text-white font-bold text-[font2]">
+                {image.category}
+              </h3>
+              <img src={image.src} alt={image.category} className="w-full h-full object-cover" loading="lazy" />
+            </div>
+          ))}
         </div>
       </div>
     </div>

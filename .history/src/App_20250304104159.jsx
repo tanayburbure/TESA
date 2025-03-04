@@ -44,7 +44,7 @@ function App() {
 
   // Keep all existing JSX structure
   return (
-    <div className="select-none overflow-hidden bg-[#EBEBEB]">
+    <div className="select-none overflow-hidden bg-black">
       <audio ref={audioRef} src="/music/chill.mp3" loop></audio>
 
       <div className="fixed bottom-6 right-6 text-[2.5vh] z-50">
@@ -79,7 +79,7 @@ function App() {
       <Aboutus/>
       <Components3d/>
       <Domain />
-      <Team />
+      {/* <Team /> */}
       <Features/>
       <Thoughts/>
       <Footer />

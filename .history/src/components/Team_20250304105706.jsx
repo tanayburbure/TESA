@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,15 +16,10 @@ const teamImages = [
   { src: "./images/Madhavi Shinde_.jpg", category: "Administrator", position: "top-[1.2vh] left-[230.7vw]" },
   { src: "./images/Madhavi Shinde_.jpg", category: "Treasurer", position: "top-[28.7vh] left-[247.8vw]" },
 ];
+
 const Team = () => {
   const imageContainerRef = useRef(null);
   const sectionRef = useRef(null);
-  const { scrollYProgress } = useViewportScroll();
-
-  // Clamp grayscale values between 0% and 100%
-  const grayscale = useTransform(scrollYProgress, [0, 1], [100, 0], {
-    clamp: true, // Ensures values stay within the specified range
-  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -85,10 +80,11 @@ const Team = () => {
               <motion.div
                 key={index}
                 className={`team-image absolute border-[4px] mt-24 h-[45vh] z-[9999999] overflow-hidden ${image.position}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  visible: { opacity: 1, scale: 1 },
+                }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                style={{ filter: grayscale }} // Apply clamped grayscale
               >
                 <h3 className="absolute bottom-[2%] left-[3%] text-[2vw] text-white font-bold text-[font2]">
                   {image.category}

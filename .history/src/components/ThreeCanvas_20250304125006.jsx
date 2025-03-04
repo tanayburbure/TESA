@@ -133,9 +133,8 @@ const ThreeCanvas = () => {
   return (
     <>
       <canvas ref={canvasRef} className="fixed" />
-      <div className="landing relative flex justify-center">
-        <img className="opacity-0" src="./TESA41`.png" alt="Logo" />
-        <h3 className="text-zinc-700 font-semibold text-[2vw] absolute top-[68vh]">TELECOM ENGINEER STUDENTS ASSOCIATION</h3>
+      <div className="landing relative">
+        <img className="opacity-0" src="./TESA.gif" alt="Logo" />
       </div>
     </>
   );

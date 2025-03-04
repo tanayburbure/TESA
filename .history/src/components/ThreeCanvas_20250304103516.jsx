@@ -11,7 +11,6 @@ const ThreeCanvas = () => {
   const planesRef = useRef([]);
   const mouseRef = useRef(new THREE.Vector2());
   const raycasterRef = useRef(new THREE.Raycaster());
-  const textureLoader = useRef(new THREE.TextureLoader());
   let animationFrameId;
 
   useEffect(() => {
@@ -32,13 +31,17 @@ const ThreeCanvas = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const images = document.querySelectorAll("img");
-    planesRef.current = []; // Reset before adding new planes
+    const textureCache = new Map();
 
     images.forEach((image) => {
-      const imgBounds = image.getBoundingClientRect();
-      const texture = textureLoader.current.load(image.src);
-      
-      const geometry = new THREE.PlaneGeometry(imgBounds.width, imgBounds.height);
+      const imageBounds = image.getBoundingClientRect();
+      let texture = textureCache.get(image.src);
+      if (!texture) {
+        texture = new THREE.TextureLoader().load(image.src);
+        textureCache.set(image.src, texture);
+      }
+
+      const geometry = new THREE.PlaneGeometry(imageBounds.width, imageBounds.height);
       const material = new THREE.ShaderMaterial({
         uniforms: {
           uTexture: { value: texture },
@@ -52,8 +55,8 @@ const ThreeCanvas = () => {
 
       const plane = new THREE.Mesh(geometry, material);
       plane.position.set(
-        imgBounds.left - window.innerWidth / 2 + imgBounds.width / 2,
-        -imgBounds.top + window.innerHeight / 2 - imgBounds.height / 2,
+        imageBounds.left - window.innerWidth / 2 + imageBounds.width / 2,
+        -imageBounds.top + window.innerHeight / 2 - imageBounds.height / 2,
         0
       );
       planesRef.current.push(plane);
@@ -70,6 +73,9 @@ const ThreeCanvas = () => {
           -imgBounds.top + window.innerHeight / 2 - imgBounds.height / 2,
           0
         );
+
+        if (plane.geometry) plane.geometry.dispose();
+        plane.geometry = new THREE.PlaneGeometry(imgBounds.width, imgBounds.height);
       });
     };
 
@@ -92,16 +98,18 @@ const ThreeCanvas = () => {
     };
     window.addEventListener("resize", handleResize);
 
+    let lastMouseMove = 0;
     const handleMouseMove = (event) => {
+      const now = performance.now();
+      if (now - lastMouseMove < 50) return;
+      lastMouseMove = now;
+
       mouseRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouseRef.current.y = 1 - (event.clientY / window.innerHeight) * 2;
       raycasterRef.current.setFromCamera(mouseRef.current, camera);
 
       const intersects = raycasterRef.current.intersectObjects(planesRef.current);
-
-      planesRef.current.forEach((plane) => {
-        gsap.to(plane.material.uniforms.uHover, { value: 0, duration: 0.3 });
-      });
+      planesRef.current.forEach((plane) => gsap.to(plane.material.uniforms.uHover, { value: 0, duration: 0.5 }));
 
       if (intersects.length > 0) {
         const intersectedPlane = intersects[0].object;
@@ -119,9 +127,10 @@ const ThreeCanvas = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       renderer.dispose();
+      textureCache.forEach((texture) => texture.dispose());
       planesRef.current.forEach((plane) => {
-        plane.geometry.dispose();
-        plane.material.dispose();
+        if (plane.geometry) plane.geometry.dispose();
+        if (plane.material) plane.material.dispose();
       });
       scene.clear();
       locomotiveScroll.destroy();
@@ -132,10 +141,9 @@ const ThreeCanvas = () => {
 
   return (
     <>
-      <canvas ref={canvasRef} className="fixed" />
-      <div className="landing relative flex justify-center">
-        <img className="opacity-0" src="./TESA41`.png" alt="Logo" />
-        <h3 className="text-zinc-700 font-semibold text-[2vw] absolute top-[68vh]">TELECOM ENGINEER STUDENTS ASSOCIATION</h3>
+      <canvas ref={canvasRef} className="" />
+      <div className="landing relative">
+        <img className="opacity-0" src="./logo.png" alt="Logo" />
       </div>
     </>
   );

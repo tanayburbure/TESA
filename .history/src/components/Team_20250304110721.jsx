@@ -6,16 +6,17 @@ import { motion, useTransform, useViewportScroll } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const teamImages = [
-  { src: "./images/principale.png", category: "Principal", position: "top-[28.7vh] left-[100vw]" },
-  { src: "./images/hod.png", category: "Head of Department", position: "top-[1.2vh] left-[121vw]" },
-  { src: "./images/itole-sir.jpg", category: "TESA Chairperson", position: "top-[28.7vh] left-[140.9vw]" },
-  { src: "./images/Gajare-sir.jpg", category: "TESA Chairperson", position: "top-[1.2vh] left-[159.3vw]" },
-  { src: "./images/Madhavi Shinde_.jpg", category: "President", position: "top-[28.7vh] left-[179.4vw]" },
-  { src: "./images/Madhavi Shinde_.jpg", category: "Vice-President", position: "top-[1.2vh] left-[196.5vw]" },
-  { src: "./images/Madhavi Shinde_.jpg", category: "General Secretary", position: "top-[28.7vh] left-[213.6vw]" },
-  { src: "./images/Madhavi Shinde_.jpg", category: "Administrator", position: "top-[1.2vh] left-[230.7vw]" },
-  { src: "./images/Madhavi Shinde_.jpg", category: "Treasurer", position: "top-[28.7vh] left-[247.8vw]" },
+  { src: "./images/principale.png", category: "Principal", position: "top-[10vh] left-[10vw]" },
+  { src: "./images/hod.png", category: "Head of Department", position: "top-[10vh] left-[30vw]" },
+  { src: "./images/itole-sir.jpg", category: "TESA Chairperson", position: "top-[10vh] left-[50vw]" },
+  { src: "./images/Gajare-sir.jpg", category: "TESA Chairperson", position: "top-[10vh] left-[70vw]" },
+  { src: "./images/Madhavi Shinde_.jpg", category: "President", position: "top-[10vh] left-[90vw]" },
+  { src: "./images/Madhavi Shinde_.jpg", category: "Vice-President", position: "top-[10vh] left-[110vw]" },
+  { src: "./images/Madhavi Shinde_.jpg", category: "General Secretary", position: "top-[10vh] left-[130vw]" },
+  { src: "./images/Madhavi Shinde_.jpg", category: "Administrator", position: "top-[10vh] left-[150vw]" },
+  { src: "./images/Madhavi Shinde_.jpg", category: "Treasurer", position: "top-[10vh] left-[170vw]" },
 ];
+
 const Team = () => {
   const imageContainerRef = useRef(null);
   const sectionRef = useRef(null);
