@@ -16,7 +16,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@react-three/drei": "^9.112.1",
-    "@react-three/fiber": "^8.17.7",
+    "@react-three/fiber": "^8.18.0",
     "@react-three/postprocessing": "^2.16.2",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.0.9",
