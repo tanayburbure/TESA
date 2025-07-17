@@ -92,7 +92,7 @@ const Team = () => {
   }, []);
 
   return (
-    <div className="wrapper relative  overflow-hidden">
+    <div className="wrapper relative bg-black overflow-hidden">
       <div ref={sectionRef} className="relative h-screen w-full overflow-hidden">
         {/* Preload custom fonts in <head> of your HTML using <link rel="preload" as="font" ...> */}
         <h1

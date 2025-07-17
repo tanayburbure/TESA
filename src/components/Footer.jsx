@@ -6,7 +6,7 @@ import { GoArrowUpRight } from "react-icons/go";
 
 function Footer() {
   return (
-    <div className="h-[75vh] lg:h-[50vh] md:h-[73vh] overflow-hidden  bg-zinc-900">
+    <div className="h-[75vh] lg:h-[50vh] md:h-[73vh] overflow-hidden">
       {/* Divider Line */}
       <div className="h-[1px] bg-zinc-700 mx-2 lg:mx-16"></div>
 

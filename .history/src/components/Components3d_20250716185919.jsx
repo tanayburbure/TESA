@@ -10,8 +10,8 @@ function Components3d() {
   const containerRef = useRef(null);
 
   return (
-    <div className="">
-      <div ref={containerRef} style={{ height: '125vh' }} className="text-center text-white pt-[15vh] bg-[#EBEBEB] relative">
+    <div>
+      <div ref={containerRef} style={{ height: '140vh' }} className="text-center text-white pt-[30vh] bg-[#EBEBEB] relative">
         <div 
           ref={overlayRef}
           className="absolute bottom-0 left-0 w-full "
@@ -26,8 +26,8 @@ function Components3d() {
         >
         </div>
         <div className="absolute "> 
-          <h1 className="text-[5.5vw] text-zinc-800 font-bold font-[font4]">Event Highlights</h1>
-          <p className="px-20 text-[2.6vh] text-zinc-700 mb-20 -mt-4 font-[font3]">Experience the perfect blend of Culture, Technology, Athleticism at our captivating events, where innovation meets tradition in a spectacular showcase of talent and passion. Join us on an exhilarating journey through the realms of Culture, Technology, and Sports.</p>
+          <h1 className="text-[5.5vw] text-zinc-800 font-bold font-[font4] transition-all duration-300">Event Highlights</h1>
+          <p className="px-20 text-[2.6vh] text-zinc-700 mb-20 -mt-4 font-[font3] transition-all duration-300">Experience the perfect blend of Culture, Technology, Athleticism at our captivating events, where innovation meets tradition in a spectacular showcase of talent and passion. Join us on an exhilarating journey through the realms of Culture, Technology, and Sports.</p>
         </div>
         <Canvas flat camera={{ fov: 28 }} style={{ height: '100%' }}>
           <OrbitControls 
@@ -37,8 +37,8 @@ function Components3d() {
             minPolarAngle={Math.PI / 2.4} 
             maxAzimuthAngle={Math.PI / 1}
             minAzimuthAngle={-Math.PI / 1}
-            enableDamping={true}
-            dampingFactor={0.05}
+            enableDamping={true} // Added damping for smoother camera movement
+            dampingFactor={0.05} // Added damping factor
           />
           <ambientLight intensity={0.8} />
           <pointLight position={[10, 10, 10]} intensity={1} />
@@ -46,9 +46,9 @@ function Components3d() {
           <EffectComposer>
             <Bloom
               mipmapBlur
-              intensity={1.8}
-              luminanceThreshold={1.8}
-              luminanceSmoothing={1}
+              intensity={1.8} // Slightly reduced for smoother bloom
+              luminanceThreshold={1.8} // Adjusted threshold
+              luminanceSmoothing={1} // Increased smoothing
             />
           </EffectComposer> 
         </Canvas>

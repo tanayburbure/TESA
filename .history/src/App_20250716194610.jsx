@@ -12,8 +12,6 @@ import Startup from "./components/Startup";
 import Interview from "./components/Interview";
 import ThreeCanvas from "./components/ThreeCanvas";
 import Nav from "./components/Nav";
-// import Transition from "./components/Transition";
-
 
 function App() {
   const audioRef = useRef(null);
@@ -77,7 +75,6 @@ function App() {
       {/* <Startup/> */}
       <Nav />
       <ThreeCanvas />
-      {/* <Transition /> */}
       <Aboutus />
       <Components3d />
       <Domain />

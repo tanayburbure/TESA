@@ -11,7 +11,8 @@ const Domain = () => {
   ];
 
   return (
-    <div className='h-[60vh] flex flex-col items-center justify-center'>
+    <div className='h-[70vh] flex flex-col items-center bg-zinc-900'>
+      {/* Flex container with a small gap */}
       <div>
         <div className='flex justify-center gap-4'> {/* Adjust gap size here */}
         {domains.map((text, index) => (

@@ -11,7 +11,7 @@ function Components3d() {
 
   return (
     <div className="">
-      <div ref={containerRef} style={{ height: '125vh' }} className="text-center text-white pt-[15vh] bg-[#EBEBEB] relative">
+      <div ref={containerRef} style={{ height: '125vh' }} className="text-center text-white pt-[15vh] relative">
         <div 
           ref={overlayRef}
           className="absolute bottom-0 left-0 w-full "

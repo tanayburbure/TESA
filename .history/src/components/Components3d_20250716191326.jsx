@@ -11,7 +11,7 @@ function Components3d() {
 
   return (
     <div className="">
-      <div ref={containerRef} style={{ height: '125vh' }} className="text-center text-white pt-[15vh] bg-[#EBEBEB] relative">
+      <div ref={containerRef} style={{ height: '120vh' }} className="text-center bg-zinc-900 text-white pt-[30vh] bg-[#EBEBEB] relative">
         <div 
           ref={overlayRef}
           className="absolute bottom-0 left-0 w-full "
@@ -25,7 +25,7 @@ function Components3d() {
           }}
         >
         </div>
-        <div className="absolute "> 
+        <div className="absolute bg-zinc-900 "> 
           <h1 className="text-[5.5vw] text-zinc-800 font-bold font-[font4]">Event Highlights</h1>
           <p className="px-20 text-[2.6vh] text-zinc-700 mb-20 -mt-4 font-[font3]">Experience the perfect blend of Culture, Technology, Athleticism at our captivating events, where innovation meets tradition in a spectacular showcase of talent and passion. Join us on an exhilarating journey through the realms of Culture, Technology, and Sports.</p>
         </div>

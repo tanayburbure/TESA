@@ -12,7 +12,7 @@ import Startup from "./components/Startup";
 import Interview from "./components/Interview";
 import ThreeCanvas from "./components/ThreeCanvas";
 import Nav from "./components/Nav";
-// import Transition from "./components/Transition";
+import Transition from "./components/Transition";
 
 
 function App() {
