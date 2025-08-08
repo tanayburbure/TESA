@@ -12,7 +12,6 @@ import ThreeCanvas from "./components/ThreeCanvas";
 import Nav from "./components/Nav";
 import { Thoughts } from "./components/Thoughts";
 import DrawingPage from "./components/DrawingPage";
-import Features from "./components/Features"
 
 function App() {
   const audioRef = useRef(null);
