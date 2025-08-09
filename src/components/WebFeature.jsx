@@ -41,7 +41,7 @@ const CardDescription = ({ children, className = "" }) => (
   </p>
 );
 
-const Features = () => {
+const WebFeature = () => {
   const features = [
     {
       title: "INTERVIEW EXPERIENCE",
@@ -116,4 +116,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default WebFeature;
