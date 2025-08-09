@@ -1,0 +1,157 @@
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
+import vertexShadertwo from "../shaders/vertexShadertwo.glsl";
+import fragmentShadertwo from "../shaders/fragmentShadertwo.glsl";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const ThreeScene = () => {
+  const canvasRef = useRef(null);
+  const sceneRef = useRef(new THREE.Scene());
+  const cameraRef = useRef(
+    new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight * 1.2), 0.1, 100)
+  );
+  const rendererRef = useRef(new THREE.WebGLRenderer({ antialias: true, alpha: true }));
+  const sphereRef = useRef(null);
+  const clockRef = useRef(new THREE.Clock());
+  const blinkRef = useRef(null);
+  const h2Ref = useRef(null);
+  const h1Ref = useRef(null);
+  const colorChangeRef = useRef(0);
+
+  useEffect(() => {
+    const renderer = rendererRef.current;
+    renderer.setSize(window.innerWidth, window.innerHeight * 1.2);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.domElement.style.position = "absolute";
+    renderer.domElement.style.top = "0";
+    if (canvasRef.current) {
+      canvasRef.current.appendChild(renderer.domElement);
+    }
+
+    const geometry = new THREE.IcosahedronGeometry(1.1, 50);
+    const material = new THREE.ShaderMaterial({
+      vertexShader: vertexShadertwo,
+      fragmentShader: fragmentShadertwo,
+      uniforms: {
+        uTime: { value: 0.0 },
+        uColorChange: { value: colorChangeRef.current },
+      },
+    });
+
+    sphereRef.current = new THREE.Mesh(geometry, material);
+    sphereRef.current.position.set(0, 0.4, 0);
+    sceneRef.current.add(sphereRef.current);
+
+    cameraRef.current.position.z = 3;
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      sphereRef.current.position.y = 1.5 - scrollY * 0.0007;
+
+      let newColor;
+      if (scrollY < 500) {
+        newColor = 0;
+      } else if (scrollY < 800) {
+        newColor = 1;
+      } else {
+        newColor = 2;
+      }
+
+      if (colorChangeRef.current !== newColor) {
+        colorChangeRef.current = newColor;
+        if (sphereRef.current.material) {
+          sphereRef.current.material.uniforms.uColorChange.value = newColor;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    const render = () => {
+      material.uniforms.uTime.value = clockRef.current.getElapsedTime();
+      renderer.render(sceneRef.current, cameraRef.current);
+      requestAnimationFrame(render);
+    };
+
+    render();
+
+    gsap.to(blinkRef.current, {
+      opacity: 0.1,
+      repeat: Infinity,
+      repeatDelay: 0.7,
+      duration: 0.5,
+      ease: "power0",
+      yoyo: true,
+    });
+
+    gsap.fromTo(
+      h1Ref.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: h1Ref.current,
+          start: "70 40",
+          end: "top 10%",
+          scrub: 3,
+          onEnter: () => gsap.to(h1Ref.current, { opacity: 1 }),
+          onLeaveBack: () => gsap.to(h1Ref.current, { opacity: 0 }),
+        },
+      }
+    );
+
+    const handleResize = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight * 1.2;
+      renderer.setSize(w, h);
+      cameraRef.current.aspect = w / h;
+      cameraRef.current.updateProjectionMatrix();
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      geometry.dispose();
+      material.dispose();
+      if (sphereRef.current) {
+        sceneRef.current.remove(sphereRef.current);
+      }
+      renderer.dispose();
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      if (canvasRef.current && renderer.domElement.parentNode === canvasRef.current) {
+        canvasRef.current.removeChild(renderer.domElement);
+      }
+    };
+  }, []);
+
+  return (
+    <div className="w-full">
+      <div className="landing w-screen relative flex flex-col">
+        <div className="flex items-center justify-center">
+          <h1
+            ref={h1Ref}
+            // If heading should be above the canvas, keep z-[50]; otherwise lower it below z-[40]
+            className="text-[7vh] font-[font4] text-center absolute font-semibold tracking-tight pt-[65vh] z-[50]"
+          >
+            <span className="font-medium pr-4 mt-2" ref={blinkRef}>
+              [
+            </span>{" "}
+            WE ARE
+          </h1>
+        </div>
+
+        {/* Canvas container: fixed, full-viewport, high z-index so it sits above Spotlight and other content */}
+        <div
+          ref={canvasRef}
+          className="fixed inset-0 z-[40] pointer-events-none"
+          // Remove pointer-events-none if the canvas should capture mouse/touch
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ThreeScene;
