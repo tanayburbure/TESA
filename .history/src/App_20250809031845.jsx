@@ -10,9 +10,9 @@ import Startup from "./components/Startup";
 import Interview from "./components/Interview";
 import ThreeCanvas from "./components/ThreeCanvas";
 import Nav from "./components/Nav";
-import Thoughts  from "./components/Thoughts";
+import  Thoughts  from "./components/Thoughts";
 import DrawingPage from "./components/DrawingPage";
-import Features from "./components/Features.jsx"
+import Features from "./components/Features"
 
 function App() {
   const audioRef = useRef(null);
