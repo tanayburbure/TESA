@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* background-color: #EBEBEB; */
+  background: #000;
+}
+
+@font-face {
+  font-family: 'font1';
+  src: url('/Fonts/Agussans.otf') format('opentype');
+}
+@font-face {
+  font-family: 'font2';
+  src: url('/Fonts/Helvetica.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'font3';
+  src: url('/Fonts/Raleway.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'font4';
+  src: url('/Fonts/Naville-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'font5';
+  src: url('/Fonts/Legand.otf') format('opentype');
+}

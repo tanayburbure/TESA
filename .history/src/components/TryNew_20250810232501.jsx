@@ -1,0 +1,1 @@
+the problem is when i hover it feels like smooth lines rounded-full applying but after a second they are going like a lines without any effect and after i hover i again apply framer effect and after a second it vanishes
