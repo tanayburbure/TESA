@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Lead({ title, subtitle, tagline, products }) {
+export default function HorizontalParallax({ title, subtitle, tagline, products }) {
   const ref = useRef(null);
   const sectionRef = useRef(null);
   const cardsContainerRef = useRef(null);

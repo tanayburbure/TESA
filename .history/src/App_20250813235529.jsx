@@ -19,9 +19,6 @@ import Menu from "./components/Menu.jsx";
 import Animate from "./components/Animate.jsx"
 import Card from "./components/Card.jsx"
 import Lead from "./components/Lead.jsx"
-import Lazy from "./components/Lazy.jsx"
-import Events from "./components/Events.jsx";
-import Techteam from "./components/Techteam.jsx"
 
 function App() {
   const audioRef = useRef(null);
@@ -86,10 +83,7 @@ function App() {
       {/* <Startup/> */}
       {/* <Interview/> */}
       {/* <Techteam/> */}
-      {/* <Lazy/> */}
-      {/* <Lead/> */}
-      {/* <Events/> */}
-      {/* <Techteam/> */}
+      <Lead/>
       <Nav />
       <DrawingPage/>
       <Home/>

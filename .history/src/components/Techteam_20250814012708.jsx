@@ -49,8 +49,8 @@ export default function Techteam({ className }) {
   return (
    <div>
      <Lead
-      title="TECHNICAL"
-      subtitle="TEAM"
+      title="STARTUP"
+      subtitle="Promotion"
       tagline="INNOVATE | COLLABORATE | TRANSFORM"
       products={products}
     />

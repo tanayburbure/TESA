@@ -49,14 +49,14 @@ export default function Techteam({ className }) {
   return (
    <div>
      <Lead
-      title="TECHNICAL"
-      subtitle="TEAM"
+      title="STARTUP"
+      subtitle="Promotion"
       tagline="INNOVATE | COLLABORATE | TRANSFORM"
       products={products}
     />
     <div className={className}>
           <h1 className="text-center text-8xl text-[#3B6654] font-semibold font-[font1] mt-32">
-            TECHNICAL EVENTS
+            OUR EVENTS
           </h1>
           <ParallaxScroll images={eventsData} />
     </div>

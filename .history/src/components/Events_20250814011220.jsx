@@ -25,9 +25,6 @@ const eventsData = [
 export default function Events({ className }) {
   return (
     <div className={className}>
-      <h1 className="text-center text-8xl text-[#3B6654] font-semibold font-[font1] mt-32">
-        OUR EVENTS
-      </h1>
       <ParallaxScroll images={eventsData} />
     </div>
   );

@@ -105,7 +105,7 @@ const Header = ({ title, subtitle, tagline }) => {
   return (
     <div className="max-w-7xl bg-transparent relative mx-auto py-20 md:py-60 px-4 w-full">
       <h1 className="text-2xl font-[font2] md:text-6xl font-bold">
-        <span className="text-[#3B6654] font-[font1] md:text-[10vh] font-bold">
+        <span className="text-[#3B6654] font-[font1]  font-bold">
           {title}
         </span>{" "}
         {subtitle}

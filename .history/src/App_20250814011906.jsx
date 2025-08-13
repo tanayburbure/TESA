@@ -89,7 +89,7 @@ function App() {
       {/* <Lazy/> */}
       {/* <Lead/> */}
       {/* <Events/> */}
-      {/* <Techteam/> */}
+      <Techteam/>
       <Nav />
       <DrawingPage/>
       <Home/>
